@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import CryptoListScreen from './screens/CryptoListScreen';
+import CryptoDetailScreen from './screens/CryptoDetailScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="CryptoList">
+        <Stack.Screen 
+          name="CryptoList" 
+          component={CryptoListScreen} 
+          options={{ title: 'Criptomonedas' }} 
+        />
+        <Stack.Screen 
+          name="CryptoDetail" 
+          component={CryptoDetailScreen} 
+          options={{ title: 'Detalle de Criptomoneda' }} 
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
